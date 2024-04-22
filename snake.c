@@ -212,6 +212,24 @@ static void DrawGame(void) {
             }
 
             DrawRectangleV(food.position, (Vector2){FOOD_SIZE, FOOD_SIZE}, RED);
+            int boxWidth = 75;
+            int boxHeight = 50;
+            int margin = 20;
+
+            DrawRectangle(SCREEN_WIDTH - boxWidth - margin, 
+                SCREEN_HEIGHT - boxHeight - margin, 
+                boxWidth, boxHeight, 
+                Fade(GRAY, 0.8));
+            DrawRectangle(SCREEN_WIDTH - boxWidth - margin + 10, 
+                SCREEN_HEIGHT - boxHeight - margin + (boxHeight - FOOD_SIZE) / 2,
+                FOOD_SIZE, 
+                FOOD_SIZE, 
+                RED);
+            DrawText(TextFormat("%d", snake.score), 
+                SCREEN_WIDTH - boxWidth - margin + 10 + FOOD_SIZE + 10, 
+                SCREEN_HEIGHT - boxHeight - margin + (boxHeight - MeasureText(TextFormat("%d", snake.score), 20)) / 2, 
+                20, 
+                BLACK);
         } break;
         case ENDING: {
             DrawTextEx(font, TextFormat("SCORE: %d", snake.score), (Vector2){SCREEN_WIDTH / 2 - MeasureText(TextFormat("SCORE: %d", snake.score), 80) / 2, 100}, 80, 6, MAROON);
