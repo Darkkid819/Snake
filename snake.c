@@ -33,6 +33,8 @@ static Texture2D texLogo;
 
 static Font font;
 
+static Sound fxFood;
+
 static int moveCounter;
 static Snake snake;
 static Food food;
@@ -73,6 +75,7 @@ static void InitGame(void) {
     #define RESOURCES
         texLogo = LoadTexture("resources/raylib_logo.png");
         font = LoadFont("resources/setback.png");
+        fxFood = LoadSound("resources/food.mp3");
     #endif
 
     screen = LOGO;
@@ -171,6 +174,8 @@ static void UpdateGame(void) {
                     SNAKE_SIZE * (GetRandomValue(0, (SCREEN_WIDTH - FOOD_SIZE) / SNAKE_SIZE)), 
                     SNAKE_SIZE * (GetRandomValue(0, (SCREEN_HEIGHT - FOOD_SIZE) / SNAKE_SIZE))
                 };
+                
+                PlaySound(fxFood);
             }
         } break;
         case ENDING: {
@@ -249,4 +254,5 @@ static void DrawGame(void) {
 static void DeInitGame(void) {
     UnloadTexture(texLogo);
     UnloadFont(font);
+    UnloadSound(fxFood);
 }
