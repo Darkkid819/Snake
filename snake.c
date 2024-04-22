@@ -85,6 +85,9 @@ static void InitGame(void) {
 
     snake.bodySize = SNAKE_INITIAL_LENGTH;
     snake.maxLength = SNAKE_MAX_LENGTH;
+    if (snake.body != NULL)  {
+        free(snake.body);
+    }
     snake.body = (Vector2*) malloc(snake.maxLength * sizeof(Vector2));
     snake.body[0] = (Vector2){
         SNAKE_SIZE * (SCREEN_WIDTH / 2 / SNAKE_SIZE), 
@@ -252,6 +255,7 @@ static void DrawGame(void) {
 }
 
 static void DeInitGame(void) {
+    free(snake.body);
     UnloadTexture(texLogo);
     UnloadFont(font);
     UnloadSound(fxFood);
